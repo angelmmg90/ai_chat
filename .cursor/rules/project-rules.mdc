@@ -37,3 +37,4 @@ Vamos a usar una arquitectura sencilla, donde tendremos:
 
 - Siempre que termines de generar un código, compílalo para ver que no hay problemas. Para ello, utiliza compileDebugKotlin. 
 - Aunque pienses que los build.gradle.kts están incorrectos, los que tienes ahora mismo en el contexto son válidos. Si tienes que modificar el libs.versions o los ficheros gradle, simplemente añade lo nuevo que necesites, y no modifiques lo que ya existe.
+- No incluyas comentarios solo para explicar lo que ya hace el código. Solo en caso de que haya alguna parte que se quede así porque en el futuro haya que añadir nueva funcionalidad.
