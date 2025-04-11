@@ -4,3 +4,15 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 }
+
+// Configurar los repositories para el buildscript
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Añadir la dependencia para el plugin de Hilt
+        classpath(libs.hilt.android.gradle.plugin)
+    }
+}

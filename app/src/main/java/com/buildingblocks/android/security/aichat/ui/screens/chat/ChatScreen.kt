@@ -21,7 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.buildingblocks.android.security.aichat.ui.viewmodel.ChatViewModel
 
 /**
@@ -30,7 +30,7 @@ import com.buildingblocks.android.security.aichat.ui.viewmodel.ChatViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatScreen(
-    viewModel: ChatViewModel = viewModel()
+    viewModel: ChatViewModel = hiltViewModel()
 ) {
     val chatUiState by viewModel.uiState.collectAsState()
     var messageText by remember { mutableStateOf(TextFieldValue("")) }
