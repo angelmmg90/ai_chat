@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,6 +31,7 @@ fun ConversationItem(
     conversation: Conversation,
     isSelected: Boolean,
     onConversationClick: (String) -> Unit,
+    onDeleteClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -66,6 +69,16 @@ fun ConversationItem(
                     text = dateString,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.outline
+                )
+            }
+            
+            IconButton(
+                onClick = { onDeleteClick(conversation.id) }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Eliminar conversación",
+                    tint = MaterialTheme.colorScheme.error
                 )
             }
         }

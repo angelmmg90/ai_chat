@@ -71,6 +71,28 @@ class ChatViewModel @Inject constructor(
         return _currentConversationId.value
     }
     
+    fun deleteConversation(conversationId: String) {
+        viewModelScope.launch {
+            // Eliminar la conversación
+            conversationRepository.deleteConversation(conversationId)
+            
+            // Si la conversación eliminada es la que estaba activa,
+            // seleccionar otra conversación
+            if (conversationId == _currentConversationId.value) {
+                // Obtener la lista actual de conversaciones
+                val currentConversations = conversations.value
+                
+                if (currentConversations.isEmpty()) {
+                    // Si no hay más conversaciones, crear una nueva
+                    createNewConversation()
+                } else {
+                    // Seleccionar la primera conversación disponible
+                    selectConversation(currentConversations.first().id)
+                }
+            }
+        }
+    }
+    
     fun sendMessage(content: String) {
         if (content.isBlank()) return
         

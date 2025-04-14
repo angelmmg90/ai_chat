@@ -30,6 +30,7 @@ fun ConversationDrawer(
     conversations: List<Conversation>,
     selectedConversationId: String?,
     onConversationSelected: (String) -> Unit,
+    onDeleteConversation: (String) -> Unit,
     onNewConversation: () -> Unit,
     drawerState: DrawerState,
     modifier: Modifier = Modifier
@@ -88,9 +89,8 @@ fun ConversationDrawer(
                         ConversationItem(
                             conversation = conversation,
                             isSelected = conversation.id == selectedConversationId,
-                            onConversationClick = { 
-                                onConversationSelected(it)
-                            }
+                            onConversationClick = onConversationSelected,
+                            onDeleteClick = onDeleteConversation
                         )
                     }
                 }
