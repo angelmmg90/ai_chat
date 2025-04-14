@@ -8,6 +8,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -35,6 +37,16 @@ fun ChatScreen(
     val chatUiState by viewModel.uiState.collectAsState()
     var messageText by remember { mutableStateOf(TextFieldValue("")) }
     val listState = rememberLazyListState()
+    val snackbarHostState = remember { SnackbarHostState() }
+    
+    // Mostrar mensajes de error en Snackbar
+    chatUiState.error?.let { error ->
+        LaunchedEffect(error) {
+            snackbarHostState.showSnackbar(
+                message = error
+            )
+        }
+    }
     
     // Scroll automático al último mensaje cuando se añade uno nuevo
     LaunchedEffect(chatUiState.messages.size) {
@@ -47,6 +59,7 @@ fun ChatScreen(
         topBar = {
             ChatTopBar()
         },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) { innerPadding ->
         Box(
@@ -57,7 +70,8 @@ fun ChatScreen(
             // Lista de mensajes
             MessagesList(
                 messages = chatUiState.messages,
-                listState = listState
+                listState = listState,
+                isLoading = chatUiState.isLoading
             )
             
             // Entrada de mensajes en la parte inferior
