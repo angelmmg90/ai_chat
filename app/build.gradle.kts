@@ -12,11 +12,11 @@ val openaiApiKey: String = gradleLocalProperties(rootDir, providers).getProperty
 
 
 android {
-    namespace = "com.buildingblocks.android.security.aichat"
+    namespace = "com.teseostudios.aichat"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.buildingblocks.android.security.aichat"
+        applicationId = "com.teseostudios.aichat"
         minSdk = 28
         targetSdk = 35
         versionCode = 1
