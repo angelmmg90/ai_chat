@@ -77,7 +77,7 @@ class ChatViewModel @Inject constructor(
         // Si no hay conversación activa, crear una nueva
         if (_currentConversationId.value == null) {
             viewModelScope.launch {
-                val conversationId = conversationRepository.createConversation(content)
+                val conversationId = conversationRepository.createConversation("Nueva conversación")
                 _currentConversationId.value = conversationId
                 sendMessageToConversation(content, conversationId)
             }
@@ -99,7 +99,7 @@ class ChatViewModel @Inject constructor(
             // Actualizar el título de la conversación si es el primer mensaje
             val messages = currentMessages.value
             if (messages.size <= 1) {
-                conversationRepository.updateConversationTitle(conversationId, content)
+                generateConversationTitle(content, conversationId)
             }
             
             // Enviar mensaje a la IA
@@ -128,6 +128,32 @@ class ChatViewModel @Inject constructor(
                         conversationRepository.addMessageToConversation(conversationId, errorMessage)
                     }
                 }
+            }
+        }
+    }
+    
+    private fun generateConversationTitle(firstMessage: String, conversationId: String) {
+        viewModelScope.launch {
+            try {
+                // Crear un mensaje específico para generar el título
+                val prompt = "Genera un título conciso y descriptivo (máximo 5 palabras) para una conversación que comienza con este mensaje: \"$firstMessage\". Responde solo con el título, sin explicaciones ni comillas."
+                
+                chatRepository.sendMessage(prompt, emptyList()).collect { result ->
+                    if (result is ChatOperationResult.Success) {
+                        // Extraer el título de la respuesta
+                        val title = result.message.content.trim()
+                        // Actualizar el título de la conversación
+                        conversationRepository.updateConversationTitle(conversationId, title)
+                    }
+                }
+            } catch (e: Exception) {
+                // Si falla, utilizamos el mensaje original truncado
+                val fallbackTitle = if (firstMessage.length > 20) 
+                    "${firstMessage.take(20)}..." 
+                else 
+                    firstMessage
+                    
+                conversationRepository.updateConversationTitle(conversationId, fallbackTitle)
             }
         }
     }
