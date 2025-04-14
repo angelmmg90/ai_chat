@@ -18,8 +18,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.buildingblocks.android.security.aichat.R
 
 /**
  * Componente que muestra el área de entrada de mensajes en la parte inferior de la pantalla
@@ -47,7 +49,7 @@ fun MessageInput(
                 OutlinedTextField(
                     value = messageText,
                     onValueChange = onMessageChange,
-                    placeholder = { Text("Type a message") },
+                    placeholder = { Text(stringResource(R.string.hint_type_message)) },
                     modifier = Modifier
                         .weight(1f)
                         .padding(end = 8.dp),
@@ -62,7 +64,7 @@ fun MessageInput(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.Send,
-                        contentDescription = "Send message",
+                        contentDescription = stringResource(R.string.content_description_send_message),
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }

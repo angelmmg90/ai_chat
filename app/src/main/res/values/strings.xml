@@ -16,6 +16,8 @@
     <!-- Chat -->
     <string name="default_conversation_title">Nueva conversación</string>
     <string name="error_message_template">Lo siento, ha ocurrido un error: %1$s</string>
+    <string name="hint_type_message">Escribe un mensaje</string>
+    <string name="content_description_send_message">Enviar mensaje</string>
     
     <!-- Prompt para generar título -->
     <string name="prompt_generate_title">Genera un título conciso y descriptivo (máximo 5 palabras) para una conversación que comienza con este mensaje: \"%1$s\". Responde solo con el título, sin explicaciones ni comillas.</string>

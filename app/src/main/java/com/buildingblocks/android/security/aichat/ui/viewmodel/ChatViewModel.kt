@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.buildingblocks.android.security.aichat.R
 import com.buildingblocks.android.security.aichat.data.repository.ChatOperationResult
 import com.buildingblocks.android.security.aichat.data.repository.ChatRepository
-import com.buildingblocks.android.security.aichat.domain.model.Conversation
 import com.buildingblocks.android.security.aichat.domain.model.Message
 import com.buildingblocks.android.security.aichat.domain.repository.ConversationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
