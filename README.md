@@ -2,11 +2,13 @@
 
 An Android application for chatting with artificial intelligence that allows you to have conversations with an AI assistant and save conversation history.
 
+## 🚀 Project Purpose
+
+This project aims to explore a new work methodology that combines **Cursor** and **Android Studio** for Android application development. Through the creation of this AI chat application, we have experimented with a hybrid workflow that leverages the specific capabilities of Android Studio along with the AI assistance provided by Cursor, enabling greater productivity and efficiency in development.
+
 ## 📱 Demo
 
-![AI Chat App Demo](assets/images/aichat_demo.gif)
-
-*Place your demo GIF file at `assets/images/aichat_demo.gif` to display it here*
+![AI Chat App Demo](assets/images/ai_chat_demo.gif)
 
 ## 📱 Main Features
 
@@ -114,4 +116,4 @@ This dual approach allowed leveraging the strengths of both tools: Android Studi
 
 Thanks to **Antonio Leiva** and his DevExpert channel for teaching this work methodology that combines the capabilities of **Cursor** and **Android Studio**, which has significantly increased productivity in development. The integration of Cursor's AI assistance with Android Studio's specific tools has been key to quickly implementing complex functionalities, all learned through his excellent workshop:
 
-- [Antonio Leiva's Android Workshop at DevExpert](https://www.youtube.com/watch?v=VGLXRna1i3U&t=2853s&ab_channel=DevExpert-Programaci%C3%B3nAndroidyKotlin)
+- [Antonio Leiva's Android Workshop at DevExpert](https://www.youtube.com/watch?v=VGLXRna1i3U)
