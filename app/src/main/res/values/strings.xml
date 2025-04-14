@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">AiChat</string>
+    
+    <!-- Pantalla principal -->
+    <string name="title_ai_chat">AI Chat</string>
+    
+    <!-- Menú lateral -->
+    <string name="title_conversations">Conversaciones</string>
+    <string name="button_new_conversation">Nueva Conversación</string>
+    <string name="text_no_conversations">No hay conversaciones</string>
+    <string name="content_description_delete_conversation">Eliminar conversación</string>
+    <string name="content_description_conversation_icon">Icono de conversación</string>
+    <string name="content_description_add_icon">Icono de añadir</string>
+    <string name="content_description_menu_icon">Icono de menú</string>
+    
+    <!-- Chat -->
+    <string name="default_conversation_title">Nueva conversación</string>
+    <string name="error_message_template">Lo siento, ha ocurrido un error: %1$s</string>
+    
+    <!-- Prompt para generar título -->
+    <string name="prompt_generate_title">Genera un título conciso y descriptivo (máximo 5 palabras) para una conversación que comienza con este mensaje: \"%1$s\". Responde solo con el título, sin explicaciones ni comillas.</string>
 </resources>

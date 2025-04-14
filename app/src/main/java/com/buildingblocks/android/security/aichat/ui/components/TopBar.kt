@@ -25,7 +25,7 @@ fun TopBar(
             IconButton(onClick = onMenuClick) {
                 Icon(
                     imageVector = Icons.Default.Menu,
-                    contentDescription = "Menu"
+                    contentDescription = stringResource(R.string.content_description_menu_icon)
                 )
             }
         },

@@ -1,13 +1,16 @@
 package com.buildingblocks.android.security.aichat.ui.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.buildingblocks.android.security.aichat.R
 import com.buildingblocks.android.security.aichat.data.repository.ChatOperationResult
 import com.buildingblocks.android.security.aichat.data.repository.ChatRepository
 import com.buildingblocks.android.security.aichat.domain.model.Conversation
 import com.buildingblocks.android.security.aichat.domain.model.Message
 import com.buildingblocks.android.security.aichat.domain.repository.ConversationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,7 +27,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val chatRepository: ChatRepository,
-    private val conversationRepository: ConversationRepository
+    private val conversationRepository: ConversationRepository,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
     
     private val _uiState = MutableStateFlow(ChatUiState())
@@ -57,7 +61,8 @@ class ChatViewModel @Inject constructor(
     
     fun createNewConversation() {
         viewModelScope.launch {
-            val conversationId = conversationRepository.createConversation("Nueva conversación")
+            val defaultTitle = context.getString(R.string.default_conversation_title)
+            val conversationId = conversationRepository.createConversation(defaultTitle)
             _currentConversationId.value = conversationId
             _uiState.update { it.copy(messages = emptyList()) }
         }
@@ -99,7 +104,8 @@ class ChatViewModel @Inject constructor(
         // Si no hay conversación activa, crear una nueva
         if (_currentConversationId.value == null) {
             viewModelScope.launch {
-                val conversationId = conversationRepository.createConversation("Nueva conversación")
+                val defaultTitle = context.getString(R.string.default_conversation_title)
+                val conversationId = conversationRepository.createConversation(defaultTitle)
                 _currentConversationId.value = conversationId
                 sendMessageToConversation(content, conversationId)
             }
@@ -142,7 +148,7 @@ class ChatViewModel @Inject constructor(
                         ) }
                         
                         val errorMessage = Message(
-                            content = "Lo siento, ha ocurrido un error: ${result.message}",
+                            content = context.getString(R.string.error_message_template, result.message),
                             isFromUser = false
                         )
                         
@@ -158,7 +164,7 @@ class ChatViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 // Crear un mensaje específico para generar el título
-                val prompt = "Genera un título conciso y descriptivo (máximo 5 palabras) para una conversación que comienza con este mensaje: \"$firstMessage\". Responde solo con el título, sin explicaciones ni comillas."
+                val prompt = context.getString(R.string.prompt_generate_title, firstMessage)
                 
                 chatRepository.sendMessage(prompt, emptyList()).collect { result ->
                     if (result is ChatOperationResult.Success) {

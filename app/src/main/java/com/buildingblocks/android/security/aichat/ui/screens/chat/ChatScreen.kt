@@ -22,8 +22,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.buildingblocks.android.security.aichat.R
 import com.buildingblocks.android.security.aichat.ui.components.ConversationDrawer
 import com.buildingblocks.android.security.aichat.ui.components.TopBar
 import com.buildingblocks.android.security.aichat.ui.viewmodel.ChatViewModel
@@ -91,7 +93,7 @@ fun ChatScreen(
         Scaffold(
             topBar = {
                 TopBar(
-                    title = "AI Chat",
+                    title = stringResource(R.string.title_ai_chat),
                     onMenuClick = {
                         scope.launch {
                             drawerState.open()

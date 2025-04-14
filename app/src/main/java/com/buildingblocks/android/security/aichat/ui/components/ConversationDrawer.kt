@@ -21,8 +21,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.buildingblocks.android.security.aichat.R
 import com.buildingblocks.android.security.aichat.domain.model.Conversation
 
 @Composable
@@ -49,7 +51,7 @@ fun ConversationDrawer(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Conversaciones",
+                    text = stringResource(R.string.title_conversations),
                     style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center
                 )
@@ -62,9 +64,12 @@ fun ConversationDrawer(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = null)
+                Icon(
+                    imageVector = Icons.Default.Add, 
+                    contentDescription = stringResource(R.string.content_description_add_icon)
+                )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Nueva Conversación")
+                Text(text = stringResource(R.string.button_new_conversation))
             }
             
             Spacer(modifier = Modifier.height(16.dp))
@@ -77,7 +82,7 @@ fun ConversationDrawer(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "No hay conversaciones",
+                        text = stringResource(R.string.text_no_conversations),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.outline
                     )

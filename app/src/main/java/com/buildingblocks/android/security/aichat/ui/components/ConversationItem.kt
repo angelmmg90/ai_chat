@@ -19,8 +19,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.buildingblocks.android.security.aichat.R
 import com.buildingblocks.android.security.aichat.domain.model.Conversation
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -49,7 +51,7 @@ fun ConversationItem(
         ) {
             Icon(
                 imageVector = Icons.Default.Info,
-                contentDescription = null,
+                contentDescription = stringResource(R.string.content_description_conversation_icon),
                 modifier = Modifier.size(24.dp)
             )
             
@@ -77,7 +79,7 @@ fun ConversationItem(
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = "Eliminar conversación",
+                    contentDescription = stringResource(R.string.content_description_delete_conversation),
                     tint = MaterialTheme.colorScheme.error
                 )
             }
